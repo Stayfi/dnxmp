@@ -1,0 +1,46 @@
+dnxmp:
+ image: nginx
+ restart: always
+ ports:
+  - "80:80"
+ volumes:
+  - /home/docker/dnxmp/www:/var/www
+  - /home/docker/dnxmp/root/nginx:/etc/nginx/conf.d
+ links:
+  - php
+
+php:
+ build: php56-fpm
+ restart: always
+ environment:
+  XDEBUG_CONFIG: remote_host=192.168.0.29
+ volumes:
+  - /home/docker/dnxmp/www:/var/www
+  - /home/docker/dnxmp/root/php56-fpm/php.ini:/usr/local/etc/php/php.ini
+ links:
+  - db
+  - mail
+
+db:
+ image: mysql
+ restart: always
+ ports:
+  - "3306:3306"
+ volumes:
+  - /var/lib/boot2docker/mysql:/var/lib/mysql
+ environment:
+  - MYSQL_ROOT_PASSWORD=dnxmp
+
+pma:
+ image: phpmyadmin/phpmyadmin
+ restart: always
+ ports:
+  - "8080:80"
+ links:
+  - db
+
+mail:
+ image: djfarrelly/maildev
+ restart: always
+ ports:
+  - "1080:80"
