@@ -10,7 +10,7 @@ dnxmp:
   - php
 
 php:
- build: php56-fpm
+ image: stayfi/php56-fpm-dev
  restart: always
  environment:
   XDEBUG_CONFIG: remote_host=192.168.0.29
