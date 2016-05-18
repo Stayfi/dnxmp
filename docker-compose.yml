@@ -16,7 +16,7 @@ php:
   XDEBUG_CONFIG: remote_host=192.168.0.29
  volumes:
   - /home/docker/dnxmp/www:/var/www
-  - /home/docker/dnxmp/root/php56-fpm/php.ini:/usr/local/etc/php/php.ini
+  - /home/docker/dnxmp/root/php56-fpm-dev/php.ini:/usr/local/etc/php/php.ini
  links:
   - db
   - mail
