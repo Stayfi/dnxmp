@@ -3,7 +3,7 @@
 
 This "**D**ocker" environment is a **N**gin**X**, **M**ySQL, **P**HP-FPM based server with PhpMyAdmin and Maildev.
 
-Docker Composition :    
+Docker Composition :
 - Nginx (image: nginx) - http://nginx.org/
 - MySQL (image: mysql) - https://www.mysql.fr/
 - PHP-FPM 5.6 (FROM php:5.6-fpm) - http://php.net/
@@ -93,7 +93,7 @@ Assuming your default docker IP address is 192.168.99.11, you can acces to :
 To start working on your project.
 
 ##### PhpMyAdmin : http://192.168.99.100:8080
-Web access to MySQL with the default credentials : 
+Web access to MySQL with the default credentials :
 - root
 - dnxmp
 
@@ -107,7 +107,9 @@ If you want to use another client for MySQL.
 Stayfi B. - <stayfi@gmail.com>
 
 ## Version
-1.0
+1.1
+
+Major.Minor[.Fix]
 
 ## License
 MIT license
