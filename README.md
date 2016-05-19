@@ -6,13 +6,14 @@ This "**D**ocker" environment is a **N**gin**X**, **M**ySQL, **P**HP-FPM based s
 Docker Composition :
 - Nginx (image: nginx) - http://nginx.org/
 - MySQL (image: mysql) - https://www.mysql.fr/
-- PHP-FPM 5.6 (FROM php:5.6-fpm) - http://php.net/
-    - PHP ext : iconv, json, mcrypt, mbstring, mysql, mysqli, pdo_mysql, pdo_sqlite, phar, curl, ftp, hash, session, simplexml, tokenizer, xml, xmlrpc, zip, intl, gd, xdebu
+- PHP-FPM 5.6 / 7.0 (FROM php:5.6-fpm / 7.0-fpm) - http://php.net/
+    - PHP ext : iconv, json, mcrypt, mbstring, mysql(only php:5.6-fpm), mysqli, pdo_mysql, pdo_sqlite, phar, curl, ftp, hash, session, simplexml, tokenizer, xml, xmlrpc, zip, intl, gd, xdebu
     - Libraries : libfreetype6-dev, libjpeg62-turbo-dev, libmcrypt-dev, libpng12-dev, libsqlite3-dev, libssl-dev, libcurl3-dev, libxml2-dev, libzzip-dev, ssmtp, libicu-dev, g++
 - PhpMyAdmin (image: phpmyadmin/phpmyadmin) - https://www.phpmyadmin.net/
 - MailDev (image: djfarrelly/maildev) - http://danfarrelly.nyc/MailDev/
 
 Default parameters:
+- php:7.0-fpm
 - remote host for Xdebug : **192.168.0.29**
 - MySQL root password : **dnxmp**
 
@@ -46,6 +47,8 @@ You have to add shared folders to your docker virtual machine, in Oracle VM Virt
 
 - shared vm name "**dnxmp_www**" -> To your "www" root
 
+![](oracle_vm_shared.png "Capture")
+
 You have to add the "`bootlocal.sh`" file to your virtual machine in this folder "`/var/lib/boot2docker/`" :
 
 ```sh
@@ -58,9 +61,8 @@ mount -t vboxsf dnxmp /home/docker/dnxmp/root
 mkdir -p /home/docker/dnxmp/www
 mount -t vboxsf dnxmp_www /home/docker/dnxmp/www
 
-$ chmod +x /var/lib/boot2docker/bootlocal.sh
+$ sudo chmod +x /var/lib/boot2docker/bootlocal.sh
 ```
-![](oracle_vm_shared.png "Capture")
 
 Restart your docker machine (assuming "default" is your docker virtual machine name):
 ```sh
@@ -71,12 +73,19 @@ Let docker-compose work :
 ```sh
 $ docker-compose build
 ```
-This will build the "php56-fpm" image and compile all extensions and libraries needed.
+This will compose our environment.
+
 
 You can change the MySQL root password in the file `docker-compose.yml` :
 
 ``
 32: MYSQL_ROOT_PASSWORD=dnxmp
+``
+
+You can work with php:5.6-fpm, juste change in in the file `docker-compose.yml` :
+
+``
+13:  build: php56-fpm-dev
 ``
 
 ## Usage
@@ -106,8 +115,18 @@ If you want to use another client for MySQL.
 ## Credits
 Stayfi B. - <stayfi@gmail.com>
 
-## Version
-1.1
+## Versions
+
+#### 1.1.1
+Fix tutorial in README.md
+Add php7.0-fpm
+
+#### 1.1
+Add link to image pre builded : stayfi/php56-fpm-dev
+
+#### 1.0
+First version, working.
+
 
 Major.Minor[.Fix]
 
