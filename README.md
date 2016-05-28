@@ -117,6 +117,9 @@ Stayfi B. - <stayfi@gmail.com>
 ## Versions
 (Major.Minor[.Fix])
 
+#### 1.4
+Fix alpine php build (add autoconf, make)
+
 #### 1.3
 Add alpine php images
 
