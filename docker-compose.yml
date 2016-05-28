@@ -1,5 +1,5 @@
 dnxmp:
- image: nginx
+ image: nginx:alpine
  restart: always
  ports:
   - "80:80"
@@ -10,7 +10,7 @@ dnxmp:
   - php
 
 php:
- image: stayfi/php70-fpm-dev
+ image: stayfi/php70-fpm-dev-alpine
  restart: always
  environment:
   XDEBUG_CONFIG: remote_host=192.168.0.29
