@@ -114,8 +114,11 @@ If you want to use another client for MySQL.
 ## Credits
 Stayfi B. - <stayfi@gmail.com>
 
-## Versions 
+## Versions
 (Major.Minor[.Fix])
+
+#### 1.3
+Add alpine php images
 
 #### 1.2
 Add link to image pre builded : stayfi/php70-fpm-dev
